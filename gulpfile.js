@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var rename = require('gulp-rename');
+var tsd = require('tsd');
 
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
@@ -18,11 +19,23 @@ var config = {
     dist: './dist'
 };
 
-gulp.task('app', function() {
+gulp.task('typings', function() {
+    var api = tsd.getAPI('./tsd.json');
+    
+    return api.readConfig('./tsd.json', true).then(function() {
+        var opts = new tsd.Options();
+        opts.overwriteFiles = true;
+        opts.resolveDependencies = true;
+        
+        return api.reinstall(opts);
+    });
+});
+
+gulp.task('app', [ 'typings' ], function() {
     return bundleEntries(false);
 });
 
-gulp.task('common', function() {
+gulp.task('common', [ 'typings' ], function() {
     //create bundle with no entries, only require common dependencies
     return browserify({ debug: true, cache: {}, packageCache: {} })
         .require(config.common)
