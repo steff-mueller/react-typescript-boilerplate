@@ -12,9 +12,9 @@ var tsify = require('tsify');
 var es = require('event-stream');
 
 var config = {
-    common: [],
+    common: [ 'react', 'react-dom' ],
     commonFile: 'common.min.js',
-	entries: [ './src/index.ts' ],
+	entries: [ './src/index.tsx' ],
     dist: './dist'
 };
 
@@ -44,7 +44,7 @@ function bundleEntries(watch) {
     var tasks = config.entries.map(function (bundle) {  
         var bundler = browserify(bundle, { debug: true, cache: {}, packageCache: {} })
             .external(config.common)
-            .plugin(tsify, {})
+            .plugin(tsify)
                 
         if (watch)
             bundler.plugin(watchify);

@@ -1,5 +1,6 @@
 # Dist
 dist/
+typings/
 
 # Logs
 logs
