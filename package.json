@@ -4,22 +4,16 @@
   "description": "",
   "main": "index.html",
   "scripts": {
+    "build": "browserify src/index.tsx typings/main.d.ts -p [ tsify ] -o dist/index.js",
+    "watch": "watchify src/index.tsx typings/main.d.ts -p [ tsify ] -o dist/index.js -v",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "browserify": "^12.0.1",
-    "event-stream": "^3.3.2",
-    "gulp": "^3.9.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.1",
-    "tsd": "^0.6.5",
-    "tsify": "^0.13.1",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.6.1"
+    "browserify": "^13.0.0",
+    "tsify": "^0.14.1",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "react": "^0.14.3",

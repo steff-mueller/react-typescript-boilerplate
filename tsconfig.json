@@ -2,6 +2,11 @@
     "compilerOptions": {
         "target": "es5",
         "jsx": "react",
-        "noImplicitAny": true
-    }
+        "noImplicitAny": true,
+        "sourceMap": true
+    },
+    "files": [
+        "./src/index.tsx",
+        "./typings/main.d.ts"
+    ]
 }

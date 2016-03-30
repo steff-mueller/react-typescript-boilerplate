@@ -1,15 +1,14 @@
-/// <reference path="../typings/tsd.d.ts" />
-import React = require('react');
-import ReactDOM = require('react-dom');
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
 
 interface HelloWorldProps {
-  name: string;
+    name: string
 }
 
-var HelloMessage = React.createClass<HelloWorldProps, any>({
-  render: function() {
-    return <p>Hello {this.props.name}</p>;
-  }
-});
+class HelloMessage extends React.Component<HelloWorldProps, {}> {
+    render() {
+        return <p>Hello {this.props.name}</p>;
+    }
+}
 
 ReactDOM.render(<HelloMessage name="John" />, document.getElementById('main'));
